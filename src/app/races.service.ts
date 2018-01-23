@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class RacesService {
 
   private racesUrl = 'http://localhost:8080/api/races';
-
+  races = [];
 
   constructor(
     private http: HttpClient,
@@ -16,7 +16,11 @@ export class RacesService {
   // GET races from API
   getRaces () {
     this.http.get(this.racesUrl)
-      .subscribe( data => console.log(data));
+      .subscribe( data => {
+        this.races = data[0];
+        console.log('data');
+        console.log(data[0]);
+      });
   }
 
 }
