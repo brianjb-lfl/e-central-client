@@ -1,26 +1,31 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-
-
+import { Http, Response } from '@angular/http';
+import 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class RacesService {
 
-  private racesUrl = 'http://localhost:8080/api/races';
+  racesUrl = 'http://localhost:8080/api/races';
   races = [];
 
-  constructor(
-    private http: HttpClient,
-  ) { }
+  constructor( private http: Http ) { }
 
   // GET races from API
   getRaces () {
-    this.http.get(this.racesUrl)
-      .subscribe( data => {
-        this.races = data[0];
-        console.log('data');
-        console.log(data[0]);
-      });
+    return this.http.get(this.racesUrl)
+      .map(
+        (response: Response) => {
+          const data = response.json();
+          return data;
+        }
+      )
+      .catch(
+        (error: Response) => {
+          console.log(error);
+          return Observable.throw('Server error');
+        }
+      )
   }
 
 }

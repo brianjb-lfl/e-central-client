@@ -1,13 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { HttpClientModule } from '@angular/common/http'
+import { Routes, RouterModule } from '@angular/router';
+import { HttpModule } from '@angular/http'
 
 
 import { AppComponent } from './app.component';
 import { RaceResultsComponent } from './race-results/race-results.component';
 import { RacesService } from './races.service';
 
+
+const appRoutes: Routes = [
+  { path: '', component: RaceResultsComponent },
+];
 
 @NgModule({
   declarations: [
@@ -16,7 +21,8 @@ import { RacesService } from './races.service';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
+    RouterModule.forRoot(appRoutes),
+    HttpModule,
   ],
   providers: [RacesService],
   bootstrap: [AppComponent]

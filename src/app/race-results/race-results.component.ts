@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RacesService } from '../races.service';
+import { Response } from '@angular/http';
 
 @Component({
   selector: 'app-race-results',
@@ -7,6 +8,8 @@ import { RacesService } from '../races.service';
   styleUrls: ['./race-results.component.css']
 })
 export class RaceResultsComponent implements OnInit {
+
+  races = [];
 
   constructor(
     private racesService: RacesService
@@ -17,7 +20,14 @@ export class RaceResultsComponent implements OnInit {
   }
 
   getRaces() {
-    this.racesService.getRaces();
+    this.racesService.getRaces()
+      .subscribe(
+        races => {
+          this.races = races;
+        },
+        error => console.log(error)
+      )
   }
 
 }
+

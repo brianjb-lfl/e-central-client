@@ -1,3 +1,11 @@
-<p>
-  race-results works!
-</p>
+<div>
+  <h1>Race Results</h1>
+  <div class="race-block" *ngFor="let race of races">
+    <div class="race-label">{{ race.type }}</div>
+    <div class="candidate-row" *ngFor="let candidate of race.candidates">
+      {{ candidate.candidate.name }} - {{ candidate.candidate.votes | number }}
+    </div>
+  </div>
+
+  <button (click)="getRaces()">Get Races</button>
+</div>

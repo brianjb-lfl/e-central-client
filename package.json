@@ -1,5 +1,5 @@
 {
-  "name": "Election Central",
+  "name": "election-central",
   "version": "2.0.0",
   "license": "MIT",
   "scripts": {
@@ -15,7 +15,7 @@
     "@angular/animations": "^5.1.0",
     "@angular/common": "^5.1.0",
     "@angular/compiler": "^5.1.0",
-    "@angular/core": "^5.1.0",
+    "@angular/core": "^5.2.3",
     "@angular/forms": "^5.1.0",
     "@angular/http": "^5.1.0",
     "@angular/platform-browser": "^5.1.0",
