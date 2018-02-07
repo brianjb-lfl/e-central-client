@@ -8,13 +8,17 @@ import { NgForm } from '@angular/forms';
 })
 export class RegLoginComponent implements OnInit {
 
+  loginUrl = '/api/auth/login/';
+
   constructor() { }
 
   ngOnInit() {
   }
 
   onLogin(form: NgForm) {
-    console.log(form.value);
+    console.log(btoa(`${form.value.username}:${form.value.password}`));
+    console.log(form.value.password);
   }
 
 }
+
