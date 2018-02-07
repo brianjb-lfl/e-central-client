@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-reg-login',
@@ -8,16 +9,20 @@ import { NgForm } from '@angular/forms';
 })
 export class RegLoginComponent implements OnInit {
 
-  loginUrl = '/api/auth/login/';
+  loginUrl = 'http://localhost:8080/api/auth/login';
 
-  constructor() { }
+  constructor(private http: Http ) { }
 
   ngOnInit() {
   }
 
   onLogin(form: NgForm) {
-    console.log(btoa(`${form.value.username}:${form.value.password}`));
-    console.log(form.value.password);
+    let b64Encoded = btoa(`${form.value.username}:${form.value.password}`);
+    return this.http.post(this.loginUrl, b64Encoded)
+      .subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error)
+      );
   }
 
 }
