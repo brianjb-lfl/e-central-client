@@ -8,16 +8,20 @@ import { HttpModule } from '@angular/http'
 import { AppComponent } from './app.component';
 import { RaceResultsComponent } from './race-results/race-results.component';
 import { RacesService } from './races.service';
+import { RegLoginComponent } from './reg-login/reg-login.component';
 
 
 const appRoutes: Routes = [
   { path: '', component: RaceResultsComponent },
+  { path: 'results', component: RaceResultsComponent},
+  { path: 'login', component: RegLoginComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    RaceResultsComponent
+    RaceResultsComponent,
+    RegLoginComponent
   ],
   imports: [
     BrowserModule,
