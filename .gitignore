@@ -33,6 +33,7 @@
 npm-debug.log
 testem.log
 /typings
+.env
 
 # e2e
 /e2e/*.js
@@ -42,4 +43,3 @@ testem.log
 .DS_Store
 Thumbs.db
 
-.env
