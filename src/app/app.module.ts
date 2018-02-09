@@ -11,6 +11,11 @@ import { AppComponent } from './app.component';
 import { RaceResultsComponent } from './race-results/race-results.component';
 import { RacesService } from './races.service';
 import { RegLoginComponent } from './reg-login/reg-login.component';
+import { RacesAdminComponent } from './components/races-admin/races-admin.component';
+import { RacesResultsComponent } from './components/races-results/races-results.component';
+import { RacesVotingComponent } from './components/races-voting/races-voting.component';
+import { UsersRegisterComponent } from './components/users-register/users-register.component';
+import { UsersLoginComponent } from './components/users-login/users-login.component';
 
 
 const appRoutes: Routes = [
@@ -23,7 +28,12 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     RaceResultsComponent,
-    RegLoginComponent
+    RegLoginComponent,
+    RacesAdminComponent,
+    RacesResultsComponent,
+    RacesVotingComponent,
+    UsersRegisterComponent,
+    UsersLoginComponent
   ],
   imports: [
     BrowserModule,
