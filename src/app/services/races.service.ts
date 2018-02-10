@@ -14,7 +14,13 @@ export class RacesService {
     let getRacesUrl = this.baseUrl + 'races';
     return this.http.get(getRacesUrl)
       .subscribe(
-        (response: any[]) => this.racesArr = response,
+        (response: any[]) => {
+          console.log('response');
+          console.log(response);
+          this.racesArr = response
+          console.log('array');
+          console.log(this.racesArr);
+        },
         (error) => console.log(error)
       );
   }

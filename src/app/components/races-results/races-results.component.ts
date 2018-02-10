@@ -5,7 +5,7 @@ import { RacesService } from '../../services/races.service';
   selector: 'app-races-results',
   templateUrl: './races-results.component.html',
   styleUrls: ['./races-results.component.css'],
-  providers: [ RacesService ],
+  providers: [ ],
 })
 export class RacesResultsComponent implements OnInit {
 
