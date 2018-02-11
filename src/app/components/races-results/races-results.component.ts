@@ -9,14 +9,22 @@ import { RacesService } from '../../services/races.service';
 })
 export class RacesResultsComponent implements OnInit {
 
-  races = [];
-
   constructor(private racesService:RacesService) { }
 
+  races = [];
+
   ngOnInit() {
-    this.racesService.getRaces();
-    this.races = this.racesService.racesArr;
-    console.log(this.races);
+    this.getRaces();
+  }
+
+  getRaces() {
+    this.racesService.getRaces()
+      .subscribe(
+        (races: any[]) => {
+          this.races = races;
+        },
+        (err) => console.log(err)
+      );
   }
 
 }

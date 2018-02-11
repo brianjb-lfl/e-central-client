@@ -1,2 +1,17 @@
-<h3>Race Results</h3>
-<div *ngFor="let race of races">{{race}}</div>
+<div class="container">
+  <h3>Race Results</h3>
+  <div *ngFor="let race of races">
+    <div class="race-header">
+      {{race.state}}
+      {{race.city}}
+      {{race.type}}
+      {{race.district}}
+    </div>
+    <div *ngFor="let candidate of race.candidates" class="candidate-row">
+      <div class="candidate-row">
+        {{candidate.candidate.name}} - 
+        {{candidate.candidate.votes | number}}
+      </div>
+    </div>
+  </div>
+</div>

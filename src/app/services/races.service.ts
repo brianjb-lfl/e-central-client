@@ -1,5 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Rx';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
 
 @Injectable()
 export class RacesService {
@@ -8,21 +15,18 @@ export class RacesService {
 
   constructor(private http: HttpClient) { }
 
-  racesArr = [];
+  racesArr: any[] = [];
 
   getRaces() {
+    console.log('get races called');
     let getRacesUrl = this.baseUrl + 'races';
-    return this.http.get(getRacesUrl)
-      .subscribe(
-        (response: any[]) => {
-          console.log('response');
-          console.log(response);
-          this.racesArr = response
-          console.log('array');
-          console.log(this.racesArr);
-        },
-        (error) => console.log(error)
-      );
+    return this.http.get(getRacesUrl);
+  }
+
+  setRaces(races: any[]) {
+    console.log('set races called');
+    this.racesArr = races;
+    console.log(this.racesArr);
   }
 
 }
