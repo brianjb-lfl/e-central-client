@@ -19,9 +19,12 @@ export class UsersLoginComponent {
   onSubmit(form: NgForm) {
     this.authService.userLogin(this.username, this.password)
       .subscribe(
-        (token:string) => {
-          console.log(token);
-          localStorage.setItem('jwt_token', token);
+        (token:any[]) => {
+          let workingToken = token['authToken'];
+          let base64Url = workingToken.split('.')[1];
+          let base64 = base64Url.replace('-', '+').replace('_', '/');
+          console.log(JSON.parse(atob(base64)));
+          //localStorage.setItem('jwt_token', token);
         },
         err => console.log(err)
       );
