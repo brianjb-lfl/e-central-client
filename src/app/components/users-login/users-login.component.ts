@@ -8,26 +8,36 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './users-login.component.html',
   styleUrls: ['./users-login.component.css']
 })
+
 export class UsersLoginComponent {
 
   username = '';
-  password='';
-
+  password = '';
 
   constructor(private authService: AuthService) { }
 
   onSubmit(form: NgForm) {
     this.authService.userLogin(this.username, this.password)
-      .subscribe(
-        (token:any[]) => {
-          let workingToken = token['authToken'];
-          let base64Url = workingToken.split('.')[1];
-          let base64 = base64Url.replace('-', '+').replace('_', '/');
-          console.log(JSON.parse(atob(base64)));
-          //localStorage.setItem('jwt_token', token);
+      .subscribe( 
+        res => {
+          console.log('submit before');
+          console.log(this.authService.currUser);
+          this.username = '';
+          this.password = '';
+          this.authService.processToken(res['authToken']);
+          console.log(this.authService.currUser);
+          console.log(this.authService.currUser);
         },
-        err => console.log(err)
-      );
+        error => {
+          console.log(error);
+        }
+      )
+  }
+
+  onLogout() {
+    this.authService.userLogout();
+    console.log('component logout');
+    console.log(this.authService.currUser);
   }
 
 }
