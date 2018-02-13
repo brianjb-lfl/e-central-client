@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RacesService } from '../../services/races.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-races-results',
@@ -9,7 +10,9 @@ import { RacesService } from '../../services/races.service';
 })
 export class RacesResultsComponent implements OnInit {
 
-  constructor(private racesService:RacesService) { }
+  constructor(
+    private racesService:RacesService,
+    private router: Router) { }
 
   races = [];
 
@@ -26,5 +29,14 @@ export class RacesResultsComponent implements OnInit {
         (err) => console.log(err)
       );
   }
+
+  onGoVoteClick() {
+    this.router.navigate(['/login']);
+  }
+
+  onGoRegisterClick() {
+    this.router.navigate(['/register']);
+  }
+
 
 }

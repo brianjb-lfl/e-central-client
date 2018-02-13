@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 import { AuthService } from '../../services/auth.service';
@@ -14,19 +15,17 @@ export class UsersLoginComponent {
   username = '';
   password = '';
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router) { }
 
   onSubmit(form: NgForm) {
     this.authService.userLogin(this.username, this.password)
       .subscribe( 
         res => {
-          console.log('submit before');
-          console.log(this.authService.currUser);
           this.username = '';
           this.password = '';
           this.authService.processToken(res['authToken']);
-          console.log(this.authService.currUser);
-          console.log(this.authService.currUser);
         },
         error => {
           console.log(error);
@@ -39,5 +38,14 @@ export class UsersLoginComponent {
     console.log('component logout');
     console.log(this.authService.currUser);
   }
+
+  // onTest() {
+  //   this.authService.checkAuthEndPt()
+  //     .subscribe(
+  //       res => {
+  //         console.log(res);
+  //       }
+  //     )
+  // }
 
 }

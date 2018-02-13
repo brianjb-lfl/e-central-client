@@ -18,7 +18,8 @@ import { AuthService } from './services/auth.service';
 const appRoutes: Routes = [
   { path: '', component: RacesResultsComponent },
   { path: 'results', component: RacesResultsComponent},
-  { path: 'login', component: UsersLoginComponent}
+  { path: 'login', component: UsersLoginComponent},
+  { path: 'register', component: UsersRegisterComponent}
 ];
 
 @NgModule({

@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class AuthService {
 
   baseUrl = 'http://localhost:8080/api/';
+
   currUser = {
     username: 'no session',
     city: '',
@@ -32,6 +33,22 @@ export class AuthService {
     localStorage.removeItem('jwt_token');
     this.resetUser();
   }
+
+  userRegister(payload) {
+    console.log(payload);
+    const userRegUrl = this.baseUrl + 'users';
+    return this.http.post(userRegUrl, payload)
+  }
+
+  // checkAuthEndPt() {
+  //   const testUrl = this.baseUrl + 'protected';
+  //   const headers = new HttpHeaders()
+  //     .append('Content-Type', 'application/json')
+  //     .append('Accept', 'application/json')
+  //     .append('Authorization', 'Bearer ' + localStorage.getItem('jwt_token'));
+  //   console.log(headers);
+  //   return this.http.get(testUrl, { headers })
+  // }
 
   processToken(token) {
     localStorage.setItem('jwt_token', token);
