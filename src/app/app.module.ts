@@ -19,7 +19,9 @@ const appRoutes: Routes = [
   { path: '', component: RacesResultsComponent },
   { path: 'results', component: RacesResultsComponent},
   { path: 'login', component: UsersLoginComponent},
-  { path: 'register', component: UsersRegisterComponent}
+  { path: 'register', component: UsersRegisterComponent},
+  { path: 'vote', component: RacesVotingComponent},
+  { path: 'races-admin', component: RacesAdminComponent}
 ];
 
 @NgModule({

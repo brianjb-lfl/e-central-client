@@ -11,7 +11,7 @@ export class AuthService {
     city: '',
     state: '',
     district: '',
-    admin: false,
+    adminUser: false,
     hasVoted: true,
     expires: new Date()
   };
@@ -67,7 +67,7 @@ export class AuthService {
       city: tokenObj.user.city,
       state: tokenObj.user.state,
       district: tokenObj.user.district,
-      admin: tokenObj.user.adminuser,
+      adminUser: tokenObj.user.adminUser,
       hasVoted: tokenObj.user.hasVoted,
       expires: tokenObj.exp
     })

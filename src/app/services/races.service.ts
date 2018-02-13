@@ -18,15 +18,12 @@ export class RacesService {
   racesArr: any[] = [];
 
   getRaces() {
-    console.log('get races called');
     let getRacesUrl = this.baseUrl + 'races';
     return this.http.get(getRacesUrl);
   }
 
   setRaces(races: any[]) {
-    console.log('set races called');
     this.racesArr = races;
-    console.log(this.racesArr);
   }
 
 }

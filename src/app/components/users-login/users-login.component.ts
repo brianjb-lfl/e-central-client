@@ -26,6 +26,13 @@ export class UsersLoginComponent {
           this.username = '';
           this.password = '';
           this.authService.processToken(res['authToken']);
+          console.log(this.authService.currUser);
+          if(this.authService.currUser.adminUser) {
+            this.router.navigate(['/races-admin']);
+          }
+          else {
+            this.router.navigate(['/vote']);
+          }
         },
         error => {
           console.log(error);
@@ -37,6 +44,10 @@ export class UsersLoginComponent {
     this.authService.userLogout();
     console.log('component logout');
     console.log(this.authService.currUser);
+  }
+
+  onRegClick() {
+    this.router.navigate(['/register']);
   }
 
   // onTest() {

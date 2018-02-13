@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 import { AuthService } from '../../services/auth.service';
@@ -19,7 +20,9 @@ export class UsersRegisterComponent implements OnInit {
     adminUser: false
   }
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -28,10 +31,21 @@ export class UsersRegisterComponent implements OnInit {
     this.authService.userRegister(this.user)
       .subscribe(
         res => {
-          console.log('done');
+          this.router.navigate(['/login'])
         }
       )
     
+  }
+
+  onCancel() {
+    this.user.username = '';
+    this.user.password = '';
+    this.user.city = '';
+    this.user.state = '';
+    this.user.district = '';
+    this.user.adminUser = false;
+
+    this.router.navigate(['/']);
   }
 
 }
