@@ -1,4 +1,6 @@
 <div class="container">
+
+  <!-- Races List -->
   <div *ngIf="currRace._id==='n/a'" class="race-list">
     <h3>Race Admin</h3>
     <div *ngFor="let race of races" class="race-block" id="{{race._id}}">
@@ -17,6 +19,8 @@
       <button (click)="delRace($event)">Del</button>
     </div>
   </div>
+
+  <!-- Race Edit Detail -->
   <div *ngIf="currRace._id!=='n/a'" class="race-detail">
     <h3>Race Details</h3>
     <form (ngSubmit)="onSubmit(f)" #f="ngForm">

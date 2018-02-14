@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RacesService } from '../../services/races.service';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-races-admin',
@@ -14,7 +15,14 @@ export class RacesAdminComponent implements OnInit {
     private router: Router) { }
 
   races = [];
-  currRace = {};
+  currRace = {
+    _id: 'n/a',
+    type: '',
+    city: '',
+    state: '',
+    district: '',
+    candidates: []
+  }
 
   ngOnInit() {
     this.resetCurrRace();
@@ -41,10 +49,24 @@ export class RacesAdminComponent implements OnInit {
     const selRaceData = this.races.filter( race => race._id === e.target.parentElement.id )[0];
     this.currRace = Object.assign( {}, this.currRace, {
       ...selRaceData
-    })
+    });
     console.log('edit race');
     console.log(e.target.parentElement.id);
     console.log(this.currRace);
+  }
+
+  onSubmit(form: NgForm) {
+    let currRaceIdx = this.races.map( race => race._id ).indexOf(this.currRace._id);
+    console.log(currRaceIdx);
+    this.racesService.updateRace(this.currRace)
+      .subscribe( () => {
+        this.races[currRaceIdx] = Object.assign( {}, this.races[currRaceIdx], {
+          ...this.currRace
+        })
+        console.log(this.currRace);
+        console.log(this.races);
+        this.resetCurrRace();
+      })
   }
 
   onCancel() {
