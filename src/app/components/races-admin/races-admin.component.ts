@@ -23,6 +23,10 @@ export class RacesAdminComponent implements OnInit {
     district: '',
     candidates: []
   }
+  currCandidate = {
+    _id: 'n/a',
+    name: ''
+  }
 
   ngOnInit() {
     this.resetCurrRace();
@@ -73,6 +77,22 @@ export class RacesAdminComponent implements OnInit {
     this.resetCurrRace();
   }
 
+  onCandidateEdit(e) {
+    const candId = e.target.parentElement.parentElement.id;
+    let currCandIdx = this.currRace.candidates
+      .map( candidate => candidate._id )
+      .indexOf(candId);
+    this.currCandidate = Object.assign( {}, this.currCandidate, {
+      _id: candId,
+      name: this.currRace.candidates[currCandIdx].candidate.name
+    })
+    console.log(this.currCandidate);
+  }
+
+  onCandidateCancel() {
+    this.resetCurrCandidate();
+  }
+
   resetCurrRace() {
     this.currRace = {
       _id: 'n/a',
@@ -81,6 +101,13 @@ export class RacesAdminComponent implements OnInit {
       state: '',
       district: '',
       candidates: []
+    }
+  }
+
+  resetCurrCandidate() {
+    this.currCandidate = {
+      _id: 'n/a',
+      name: ''
     }
   }
 

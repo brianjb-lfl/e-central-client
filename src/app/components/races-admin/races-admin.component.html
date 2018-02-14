@@ -64,6 +64,31 @@
           id="district"
           required>
       </div>
+      <div class="form-group candidate-edit-block">
+        <label for="candidates">Candidates</label>
+        <button (click)="onAddCandidate()" class="form-btn">Add</button>
+        <div *ngFor="let candidate of currRace.candidates">
+          <div class="candidate-edit-row" id="{{candidate._id}}">
+            <div *ngIf="candidate._id !== currCandidate._id">
+              {{candidate.candidate.name}}
+              <button type="button" (click)="onCandidateEdit($event)" class="form-btn">Edit</button>
+              <button type="button" (click)="onCandidateDel()" class="form-btn">Del</button>
+            </div>
+            <div *ngIf="candidate._id === currCandidate._id">
+              <input
+                [(ngModel)]="currCandidate.name"
+                name="name"
+                type="text"
+                class="form-input"
+                id="name"
+                required>
+              <button type="button" (click)="onCandidateSave()" id="{{candidate._id}}" class="form-btn">Save</button>
+              <button type="button" (click)="onCandidateCancel()" class="form-btn">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <button type="submit" class="form-btn">Save</button>
       <button type="button" (click)="onCancel()" class="form-btn">Cancel</button>
     </form>
