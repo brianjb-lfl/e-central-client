@@ -24,7 +24,8 @@ export class RacesResultsComponent implements OnInit {
     this.racesService.getRaces()
       .subscribe(
         (races: any[]) => {
-          this.races = races;
+          this.racesService.setRaces(races);
+          this.races = this.racesService.racesArr; 
         },
         (err) => console.log(err)
       );
