@@ -16,6 +16,7 @@ export class RacesService {
   constructor(private http: HttpClient) { }
 
   racesArr: any[] = [];
+  editingRace: number = null;
 
   getRaces() {
     const getRacesUrl = this.baseUrl + 'races';

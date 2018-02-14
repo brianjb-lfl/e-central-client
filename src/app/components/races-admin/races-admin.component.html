@@ -1,96 +1,21 @@
 <div class="container">
 
-  <!-- Races List -->
-  <div *ngIf="currRace._id==='n/a'" class="race-list">
-    <h3>Race Admin</h3>
-    <div *ngFor="let race of races" class="race-block" id="{{race._id}}">
-      <div class="race-header">
-        {{race.type}}<br>
-        St: {{race.state}}
-        City: {{race.city}}
-        Dist: {{race.district}}
-      </div>
-      <div *ngFor="let candidate of race.candidates" class="candidate-row">
-        <div class="candidate-row">
-          {{candidate.candidate.name}}
-        </div>
-      </div>
-      <button (click)="editRace($event)">Edit</button>
-      <button (click)="delRace($event)">Del</button>
+  <h3>Current Races</h3>
+  <button type="button" (click)="onAdd()">Add</button>
+  <div *ngFor="let race of races" class="race-block" id="{{race._id}}">
+    <div class="race-header">
+      {{race.type}}<br>
+      St: {{race.state}}
+      City: {{race.city}}
+      Dist: {{race.district}}
     </div>
+    <div *ngFor="let candidate of race.candidates" class="candidate-row">
+      <div class="candidate-row">
+        {{candidate.candidate.name}}
+      </div>
+    </div>
+    <button (click)="onEdit($event)">Edit</button>
+    <button (click)="onDelete($event)">Del</button>
   </div>
 
-  <!-- Race Edit Detail -->
-  <div *ngIf="currRace._id!=='n/a'" class="race-detail">
-    <h3>Race Details</h3>
-    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-      <div class="form-group">
-        <label for="type">Race Type</label>
-        <input 
-          [(ngModel)]="currRace.type"
-          name="type"
-          type="text"
-          class="form-input"
-          id="type"
-          required>
-      </div>
-      <div class="form-group">
-        <label for="city">City</label>
-        <input 
-          [(ngModel)]="currRace.city"
-          name="city"
-          type="text"
-          class="form-input"
-          id="city"
-          required>
-      </div>
-      <div class="form-group">
-        <label for="state">State</label>
-        <input 
-          [(ngModel)]="currRace.state"
-          name="state"
-          type="text"
-          class="form-input"
-          id="state"
-          required>
-      </div>
-      <div class="form-group">
-        <label for="district">District</label>
-        <input 
-          [(ngModel)]="currRace.district"
-          name="district"
-          type="text"
-          class="form-input"
-          id="district"
-          required>
-      </div>
-      <div class="form-group candidate-edit-block">
-        <label for="candidates">Candidates</label>
-        <button (click)="onAddCandidate()" class="form-btn">Add</button>
-        <div *ngFor="let candidate of currRace.candidates">
-          <div class="candidate-edit-row" id="{{candidate._id}}">
-            <div *ngIf="candidate._id !== currCandidate._id">
-              {{candidate.candidate.name}}
-              <button type="button" (click)="onCandidateEdit($event)" class="form-btn">Edit</button>
-              <button type="button" (click)="onCandidateDel()" class="form-btn">Del</button>
-            </div>
-            <div *ngIf="candidate._id === currCandidate._id">
-              <input
-                [(ngModel)]="currCandidate.name"
-                name="name"
-                type="text"
-                class="form-input"
-                id="name"
-                required>
-              <button type="button" (click)="onCandidateSave()" id="{{candidate._id}}" class="form-btn">Save</button>
-              <button type="button" (click)="onCandidateCancel()" class="form-btn">Cancel</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <button type="submit" class="form-btn">Save</button>
-      <button type="button" (click)="onCancel()" class="form-btn">Cancel</button>
-    </form>
-  </div>
 </div>
