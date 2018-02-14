@@ -1,0 +1,16 @@
+.race-block {
+  width: 50%;
+  margin: 10px auto;
+  padding: 8px;
+  background-color: #ececa3;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+.candidate-row {
+  margin-left: 8px;
+}
+
+.candidate-edit-block {
+  margin: 16px 8px;
+}

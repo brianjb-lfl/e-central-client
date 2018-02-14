@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { RacesAdminComponent } from './components/races-admin/races-admin.component';
+import { RaceEditComponent } from './components/race-edit/race-edit.component';
 import { RacesResultsComponent } from './components/races-results/races-results.component';
 import { RacesVotingComponent } from './components/races-voting/races-voting.component';
 import { UsersRegisterComponent } from './components/users-register/users-register.component';
@@ -17,17 +18,19 @@ import { AuthService } from './services/auth.service';
 
 const appRoutes: Routes = [
   { path: '', component: RacesResultsComponent },
-  { path: 'results', component: RacesResultsComponent},
-  { path: 'login', component: UsersLoginComponent},
-  { path: 'register', component: UsersRegisterComponent},
-  { path: 'vote', component: RacesVotingComponent},
-  { path: 'races-admin', component: RacesAdminComponent}
+  { path: 'results', component: RacesResultsComponent },
+  { path: 'login', component: UsersLoginComponent },
+  { path: 'register', component: UsersRegisterComponent },
+  { path: 'vote', component: RacesVotingComponent },
+  { path: 'races-admin', component: RacesAdminComponent },
+  { path: 'race-edit', component: RaceEditComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     RacesAdminComponent,
+    RaceEditComponent,
     RacesResultsComponent,
     RacesVotingComponent,
     UsersRegisterComponent,
