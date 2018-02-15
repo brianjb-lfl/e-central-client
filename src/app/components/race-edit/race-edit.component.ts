@@ -78,7 +78,7 @@ export class RaceEditComponent implements OnInit {
 
   setCurrRace() {
     //let tempObj = this.racesService.racesArr[this.racesService.editingRace];
-    if(this.racesService.editingRace) {
+    if(this.racesService.editingRace >= 0) {
       this.currRace = Object.assign( {}, this.currRace, 
         this.racesService.racesArr[this.racesService.editingRace] );
     }

@@ -11,12 +11,20 @@ const httpOptions = {
 @Injectable()
 export class RacesService {
 
-  baseUrl = 'http://localhost:8080/api/';
-
   constructor(private http: HttpClient) { }
+
+  // *** Local variables
+
+  jwtHeaders = new HttpHeaders()
+    .append('Content-Type', 'application/json')
+    .append('Accept', 'application/json');
+
+  baseUrl = 'http://localhost:8080/api/';
 
   racesArr: any[] = [];
   editingRace: number = null;
+
+  // *** Race admin functions
 
   getRaces() {
     const getRacesUrl = this.baseUrl + 'races';
@@ -28,30 +36,26 @@ export class RacesService {
   }
 
   saveRace(raceObj) {
-    let jwtHeaders = new HttpHeaders()
-      .append('Content-Type', 'application/json')
-      .append('Accept', 'application/json')
+    this.jwtHeaders
       .append('Authorization', 'Bearer ' + localStorage.getItem('jwt_token'));
     
     if(this.editingRace) {
       const putRaceUrl = this.baseUrl + `races/${raceObj._id}`;
-      return this.http.put(putRaceUrl, raceObj, { headers: jwtHeaders });
+      return this.http.put(putRaceUrl, raceObj, { headers: this.jwtHeaders });
     }
     else {
       const postRaceUrl = this.baseUrl + 'races';
-      return this.http.post(postRaceUrl, raceObj, { headers: jwtHeaders });
+      return this.http.post(postRaceUrl, raceObj, { headers: this.jwtHeaders });
     }
 
   }
 
   deleteRace(raceId) {
-    let jwtHeaders = new HttpHeaders()
-      .append('Content-Type', 'application/json')
-      .append('Accept', 'application/json')
+    this.jwtHeaders
       .append('Authorization', 'Bearer ' + localStorage.getItem('jwt_token'));
 
     const delRaceUrl = this.baseUrl + `races/${raceId}`;
-    return this.http.delete(delRaceUrl, { headers: jwtHeaders });
+    return this.http.delete(delRaceUrl, { headers: this.jwtHeaders });
   }
 
 }
