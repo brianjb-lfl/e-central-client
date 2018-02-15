@@ -2,6 +2,7 @@
 
   <h3>Current Races</h3>
   <button type="button" (click)="onAdd()">Add</button>
+
   <div *ngFor="let race of races" class="race-block" id="{{race._id}}">
     <div class="race-header">
       {{race.type}}<br>
@@ -9,11 +10,13 @@
       City: {{race.city}}
       Dist: {{race.district}}
     </div>
+  
     <div *ngFor="let candidate of race.candidates" class="candidate-row">
       <div class="candidate-row">
         {{candidate.candidate.name}}
       </div>
     </div>
+  
     <button (click)="onEdit($event)">Edit</button>
     <button (click)="onDelete($event)">Del</button>
   </div>

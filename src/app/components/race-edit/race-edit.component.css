@@ -14,3 +14,7 @@
 .candidate-edit-block {
   margin: 16px 8px;
 }
+
+.candidate-edit-block a:hover {
+  cursor: pointer;
+}

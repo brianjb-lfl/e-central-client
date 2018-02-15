@@ -1,8 +1,10 @@
 <div class="container">
 
-  <div *ngIf="currRace._id!=='n/a'" class="race-detail">
     <h3>Race Details</h3>
+
     <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      
+      <!-- Race type -->
       <div class="form-group">
         <label for="type">Race Type</label>
         <input 
@@ -13,6 +15,8 @@
           id="type"
           required>
       </div>
+
+      <!-- City -->
       <div class="form-group">
         <label for="city">City</label>
         <input 
@@ -23,6 +27,8 @@
           id="city"
           required>
       </div>
+
+      <!-- State -->
       <div class="form-group">
         <label for="state">State</label>
         <input 
@@ -33,6 +39,8 @@
           id="state"
           required>
       </div>
+
+      <!-- District -->
       <div class="form-group">
         <label for="district">District</label>
         <input 
@@ -43,15 +51,33 @@
           id="district"
           required>
       </div>
+
+      <!-- Candidates list -->
       <div class="form-group candidate-edit-block">
         <label for="candidates">Candidates</label>
+        <a (click)="onAddCandidate()">+</a>
         <div *ngFor="let candidate of currRace.candidates">
-          {{candidate.candidate.name}}
+          <div class="candidate-edit-row" id="{{candidate._id}}">
+            <span>{{candidate.candidate.name}}</span>
+            <a (click)="onDelCandidate($event)">X</a>
+          </div>
+        </div>
+
+        <!-- Add candidate input -->
+        <div *ngIf="addingCandidate" class="add-candidate-text">
+          <input 
+            [(ngModel)]="newCandidateName"
+            name="newCandidateName"
+            type="text"
+            class="form-input"
+            id="newCandidateName">
+          <button type="button" (click)="addNewCandidate()" class="form-btn">Add</button>
+          <button type="button" (click)="cancelNewCandidate()" class="form-btn">Cancel</button>
         </div>
       </div>
+
       <button type="submit" class="form-btn">Save</button>
-      <button type="button" (click)="cancelEdit" class="form-btn">Cancel</button>
+      <button type="button" (click)="onCancelEdit()" class="form-btn">Cancel</button>
     </form>
-  </div>
 
 </div>
