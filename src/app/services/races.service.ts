@@ -17,7 +17,8 @@ export class RacesService {
 
   jwtHeaders = new HttpHeaders()
     .append('Content-Type', 'application/json')
-    .append('Accept', 'application/json');
+    .append('Accept', 'application/json')
+    .append('Authorization', 'Bearer ' + localStorage.getItem('jwt_token'));
 
   baseUrl = 'http://localhost:8080/api/';
 
@@ -56,6 +57,15 @@ export class RacesService {
 
     const delRaceUrl = this.baseUrl + `races/${raceId}`;
     return this.http.delete(delRaceUrl, { headers: this.jwtHeaders });
+  }
+
+  castVotes(votesObj) {
+    // this.jwtHeaders
+    //   .append('Authorization', 'Bearer ' + localStorage.getItem('jwt_token'));
+    console.log(this.jwtHeaders);
+    
+    const voteUrl = this.baseUrl + 'races/votes';
+    return this.http.put(voteUrl, votesObj, { headers: this.jwtHeaders });
   }
 
 }

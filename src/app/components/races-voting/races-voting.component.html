@@ -13,12 +13,23 @@
           <input
             type="radio"
             name="{{race._id}}"
-            ngModel
+            [(ngModel)]="votes[race._id]"
             value="{{candidate._id}}"
             (change)="onRadioChange($event)">
             {{candidate.candidate.name}}
         </label>
       </div>
     </div>
+    <label>
+      <input
+        type="radio"
+        name="{{race._id}}"
+        [(ngModel)]="votes[race._id]"
+        value="abstain"
+        (change)="onRadioChange($event)">
+        - No Vote -
+    </label>
   </div>
+  <button type="button" (click)="onVote()" class="form-btn">Vote!</button>
+  <button type="button" (click)="onCancelVote()" class="form-btn">Cancel</button>
 </div>
