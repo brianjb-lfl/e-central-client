@@ -14,6 +14,8 @@ export class RaceEditComponent implements OnInit {
     private racesService: RacesService,
     private router: Router) { }
 
+  // *** Local variables
+
   currRace = {
     _id: 'n/a',
     type: '',

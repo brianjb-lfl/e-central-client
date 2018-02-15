@@ -14,6 +14,8 @@ export class RacesAdminComponent implements OnInit {
     private racesService:RacesService,
     private router: Router) { }
 
+  // *** Local variables
+
   races = [];
 
   // *** Life-cycle
