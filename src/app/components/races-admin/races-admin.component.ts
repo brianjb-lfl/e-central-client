@@ -16,9 +16,13 @@ export class RacesAdminComponent implements OnInit {
 
   races = [];
 
+  // *** Life-cycle
+
   ngOnInit() {
     this.getRaces();
   }
+
+  // *** Race admin functions
 
   getRaces() {
     this.racesService.getRaces()
@@ -32,7 +36,8 @@ export class RacesAdminComponent implements OnInit {
   }
 
   onAdd() {
-    console.log('add race');
+    this.racesService.editingRace = null;
+    this.router.navigate(['/race-edit']);
   }
 
   onEdit(e) {
@@ -43,7 +48,17 @@ export class RacesAdminComponent implements OnInit {
   }
 
   onDelete(e) {
-    console.log('delete race ', e.target.parentElement.id);
+    const delRaceId = e.target.parentElement.id;
+    this.racesService.deleteRace(delRaceId)
+      .subscribe( 
+        () => {
+          let tempRaces = this.races;
+          this.races = tempRaces.filter( race =>
+            race._id !== delRaceId);
+          this.racesService.setRaces(this.races);
+        },
+        (err) => console.log(err)
+      );
   }
 
 }

@@ -27,17 +27,31 @@ export class RacesService {
     this.racesArr = races;
   }
 
-  updateRace(raceObj) {
-    console.log('raceObj');
-    console.log(raceObj);
-    let jHeaders = new HttpHeaders()
+  saveRace(raceObj) {
+    let jwtHeaders = new HttpHeaders()
       .append('Content-Type', 'application/json')
       .append('Accept', 'application/json')
       .append('Authorization', 'Bearer ' + localStorage.getItem('jwt_token'));
-    const putRaceUrl = this.baseUrl + `races/${raceObj._id}`;
+    
+    if(this.editingRace) {
+      const putRaceUrl = this.baseUrl + `races/${raceObj._id}`;
+      return this.http.put(putRaceUrl, raceObj, { headers: jwtHeaders });
+    }
+    else {
+      const postRaceUrl = this.baseUrl + 'races';
+      return this.http.post(postRaceUrl, raceObj, { headers: jwtHeaders });
+    }
 
-    return this.http.put(putRaceUrl, raceObj, { headers: jHeaders })
+  }
 
+  deleteRace(raceId) {
+    let jwtHeaders = new HttpHeaders()
+      .append('Content-Type', 'application/json')
+      .append('Accept', 'application/json')
+      .append('Authorization', 'Bearer ' + localStorage.getItem('jwt_token'));
+
+    const delRaceUrl = this.baseUrl + `races/${raceId}`;
+    return this.http.delete(delRaceUrl, { headers: jwtHeaders });
   }
 
 }

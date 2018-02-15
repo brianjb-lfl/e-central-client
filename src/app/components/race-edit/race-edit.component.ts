@@ -26,6 +26,8 @@ export class RaceEditComponent implements OnInit {
   addingCandidate = false;
   newCandidateName = '';
 
+  // *** Life-cycle
+
   ngOnInit() {
     this.setCurrRace();
   }
@@ -37,7 +39,7 @@ export class RaceEditComponent implements OnInit {
   // *** Race editing
 
   onSubmit(form: NgForm) {
-    this.racesService.updateRace(this.currRace)
+    this.racesService.saveRace(this.currRace)
       .subscribe( () => {
         this.router.navigate(['/races-admin']);
       })
@@ -73,9 +75,11 @@ export class RaceEditComponent implements OnInit {
   // *** Utils
 
   setCurrRace() {
-    let tempObj = this.racesService.racesArr[this.racesService.editingRace];
-    this.currRace = Object.assign( {}, this.currRace, 
-      this.racesService.racesArr[this.racesService.editingRace] );
+    //let tempObj = this.racesService.racesArr[this.racesService.editingRace];
+    if(this.racesService.editingRace) {
+      this.currRace = Object.assign( {}, this.currRace, 
+        this.racesService.racesArr[this.racesService.editingRace] );
+    }
   }
 
   clearAddingCandidate() {
