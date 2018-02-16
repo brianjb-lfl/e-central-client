@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RacesService } from '../../services/races.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,6 +12,7 @@ export class RacesVotingComponent implements OnInit {
 
   constructor(  
     private racesService:RacesService,
+    private authService:AuthService,
     private router: Router) { }
 
   races = [];
@@ -28,27 +30,27 @@ export class RacesVotingComponent implements OnInit {
           this.racesService.setRaces(races);
           this.races = this.racesService.racesArr
           this.races.forEach( race => this.votes[race._id] = null);
-          console.log(this.races);
-          console.log(this.votes);
         },
         (err) => console.log(err)
       );
   }
 
-  onRadioChange(e) {
-    // console.log('radio change');
-    // console.log(this.races);
-    // console.log(this.votes);
-  }
-
   onVote() {
-    console.log('onVote called');
-    console.log(this.votes);
     this.racesService.castVotes(this.votes)
       .subscribe(
-        () => { console.log('votes cast') },
+        () => { 
+          this.votes = {};
+          this.authService.userLogout();
+          this.router.navigate(['/']);
+        },
         (err) => console.log(err)
       );
+  }
+
+  onCancelVote() {
+    this.votes = {};
+    this.authService.userLogout();
+    this.router.navigate(['/']);
   }
 
 }

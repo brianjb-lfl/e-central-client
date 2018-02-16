@@ -60,23 +60,27 @@ export class RacesService {
     return this.http.delete(delRaceUrl, { headers: this.jwtHeaders });
   }
 
-
   castVotes(votesObj) {
 
     const racesList = Object.keys(votesObj);
+    console.log(votesObj);
     let voteUrl = '';
     let votePayload = {};
     let observableBatch = [];
 
     racesList.forEach( race => {
-      voteUrl = this.baseUrl + `races/ballot/${race}`;
-      votePayload = Object.assign( {}, votePayload, {
-        ['_id']: race,
-        ['candidates._id']: votesObj[race], 
-      })
-      observableBatch.push(
-        this.http.put(voteUrl, votePayload, { headers: this.jwtHeaders })          
-      )
+      if(votesObj[race] !== 'abstain') {
+
+        voteUrl = this.baseUrl + `races/ballot/${race}`;
+        votePayload = Object.assign( {}, votePayload, {
+          ['_id']: race,
+          ['candidates._id']: votesObj[race], 
+        })
+
+        observableBatch.push(
+          this.http.put(voteUrl, votePayload, { headers: this.jwtHeaders })          
+        )
+      }
     });
 
     return Observable.forkJoin(observableBatch);

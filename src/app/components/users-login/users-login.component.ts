@@ -42,8 +42,6 @@ export class UsersLoginComponent {
 
   onLogout() {
     this.authService.userLogout();
-    console.log('component logout');
-    console.log(this.authService.currUser);
   }
 
   onRegClick() {

@@ -14,8 +14,7 @@
             type="radio"
             name="{{race._id}}"
             [(ngModel)]="votes[race._id]"
-            value="{{candidate._id}}"
-            (change)="onRadioChange($event)">
+            value="{{candidate._id}}">
             {{candidate.candidate.name}}
         </label>
       </div>
@@ -25,8 +24,7 @@
         type="radio"
         name="{{race._id}}"
         [(ngModel)]="votes[race._id]"
-        value="abstain"
-        (change)="onRadioChange($event)">
+        value="abstain">
         - No Vote -
     </label>
   </div>
