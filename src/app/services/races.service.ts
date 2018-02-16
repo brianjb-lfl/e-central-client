@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AuthService } from './auth.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/observable/forkJoin';
@@ -12,7 +13,9 @@ const httpOptions = {
 @Injectable()
 export class RacesService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private authService: AuthService,
+    private http: HttpClient) { }
 
   // *** Local variables
 
@@ -82,6 +85,15 @@ export class RacesService {
         )
       }
     });
+
+    const currUsername = this.authService.currUser.username;
+    const hasVotedUrl = this.baseUrl + `users/setvote/${currUsername}`;
+    const hasVotedPayload = {
+      username: currUsername
+    }
+    observableBatch.push(
+      this.http.put(hasVotedUrl, hasVotedPayload)
+    )
 
     return Observable.forkJoin(observableBatch);
   }

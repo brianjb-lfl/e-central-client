@@ -23,6 +23,11 @@
     </div>
     <button type="submit" class="form-btn">Login</button>
     <button type="button" (click)="onRegClick()" class="form-btn">Register</button>
-    <button type="button" (click)="onLogout()" class="form-btn">Log Out</button>
+    <button type="button" (click)="onCancelLogin()" class="form-btn">Cancel</button>
   </form>
+  <div *ngIf="hasVotedBlock">
+    <h4>We appreciate the enthusiasm, but ...</h4>
+    <h3>Our records show that you've already voted.</h3>
+    <p>If you believe that this is in error, please contact your county clerk or local election commission.</p>
+  </div>
 </div>

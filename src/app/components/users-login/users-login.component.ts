@@ -14,6 +14,7 @@ export class UsersLoginComponent {
 
   username = '';
   password = '';
+  hasVotedBlock = false;
 
   constructor(
     private authService: AuthService,
@@ -31,7 +32,12 @@ export class UsersLoginComponent {
             this.router.navigate(['/races-admin']);
           }
           else {
-            this.router.navigate(['/vote']);
+            if(this.authService.currUser.hasVoted) {
+              this.hasVotedBlock = true;
+            }
+            else {
+              this.router.navigate(['/vote']);
+            }
           }
         },
         error => {
@@ -40,8 +46,9 @@ export class UsersLoginComponent {
       )
   }
 
-  onLogout() {
+  onCancelLogin() {
     this.authService.userLogout();
+    this.router.navigate(['/']);
   }
 
   onRegClick() {
