@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RacesService } from '../../services/races.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
@@ -12,6 +13,7 @@ export class RacesAdminComponent implements OnInit {
 
   constructor(
     private racesService:RacesService,
+    private authService:AuthService,
     private router: Router) { }
 
   // *** Local variables
@@ -21,6 +23,10 @@ export class RacesAdminComponent implements OnInit {
   // *** Life-cycle
 
   ngOnInit() {
+    if(!this.authService.currUser.adminUser) {
+      this.router.navigate(['/']);
+    }
+
     this.getRaces();
   }
 

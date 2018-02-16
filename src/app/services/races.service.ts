@@ -66,7 +66,6 @@ export class RacesService {
   castVotes(votesObj) {
 
     const racesList = Object.keys(votesObj);
-    console.log(votesObj);
     let voteUrl = '';
     let votePayload = {};
     let observableBatch = [];

@@ -20,6 +20,11 @@ export class RacesVotingComponent implements OnInit {
   votes = {};
 
   ngOnInit() {
+    if(this.authService.currUser.adminUser 
+      || this.authService.currUser.username === 'no session') {
+      this.router.navigate(['/']);
+    }
+
     this.getRaces();
   }
 
