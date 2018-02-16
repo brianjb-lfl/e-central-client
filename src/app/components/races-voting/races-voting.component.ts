@@ -43,6 +43,7 @@ export class RacesVotingComponent implements OnInit {
 
   onVote() {
     console.log('onVote called');
+    console.log(this.votes);
     this.racesService.castVotes(this.votes)
       .subscribe(
         () => { console.log('votes cast') },

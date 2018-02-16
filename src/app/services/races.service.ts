@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
+import 'rxjs/add/observable/forkJoin';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -59,13 +60,26 @@ export class RacesService {
     return this.http.delete(delRaceUrl, { headers: this.jwtHeaders });
   }
 
+
   castVotes(votesObj) {
-    // this.jwtHeaders
-    //   .append('Authorization', 'Bearer ' + localStorage.getItem('jwt_token'));
-    console.log(this.jwtHeaders);
-    
-    const voteUrl = this.baseUrl + 'races/votes';
-    return this.http.put(voteUrl, votesObj, { headers: this.jwtHeaders });
+
+    const racesList = Object.keys(votesObj);
+    let voteUrl = '';
+    let votePayload = {};
+    let observableBatch = [];
+
+    racesList.forEach( race => {
+      voteUrl = this.baseUrl + `races/ballot/${race}`;
+      votePayload = Object.assign( {}, votePayload, {
+        ['_id']: race,
+        ['candidates._id']: votesObj[race], 
+      })
+      observableBatch.push(
+        this.http.put(voteUrl, votePayload, { headers: this.jwtHeaders })          
+      )
+    });
+
+    return Observable.forkJoin(observableBatch);
   }
 
 }
