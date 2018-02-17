@@ -12,6 +12,7 @@ import { RacesResultsComponent } from './components/races-results/races-results.
 import { RacesVotingComponent } from './components/races-voting/races-voting.component';
 import { UsersRegisterComponent } from './components/users-register/users-register.component';
 import { UsersLoginComponent } from './components/users-login/users-login.component';
+import { HeaderComponent } from './components/header/header.component';
 
 import { RacesService } from './services/races.service';
 import { AuthService } from './services/auth.service';
@@ -34,7 +35,8 @@ const appRoutes: Routes = [
     RacesResultsComponent,
     RacesVotingComponent,
     UsersRegisterComponent,
-    UsersLoginComponent
+    UsersLoginComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,38 @@
+.header-container {
+  width: 90%;
+  margin: 10px auto;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #cc0000;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+.logo-block {
+  max-width: 55%;
+}
+
+.logo-block h1 {
+  color: white;
+}
+
+.nav-block {
+  width: 40%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.nav-block span {
+  width: 40%;
+  text-align: center;
+}
+
+a {
+  color: yellow;
+}
+
+a:hover {
+  cursor: pointer;
+}

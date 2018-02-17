@@ -1,4 +1,14 @@
 * {
-  font-family: 'Abel', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   color: black;
+  margin: 0;
+  padding: 0;
 }
+
+body {
+  width: 95%;
+  margin: 0 auto;
+  font-size: 12px;
+  border: 1px solid green;
+}
+

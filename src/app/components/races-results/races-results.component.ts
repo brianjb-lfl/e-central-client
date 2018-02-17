@@ -15,6 +15,7 @@ export class RacesResultsComponent implements OnInit {
     private router: Router) { }
 
   races = [];
+  raceTotals = {};
 
   ngOnInit() {
     this.getRaces();
@@ -25,7 +26,8 @@ export class RacesResultsComponent implements OnInit {
       .subscribe(
         (races: any[]) => {
           this.racesService.setRaces(races);
-          this.races = this.racesService.racesArr; 
+          this.races = this.racesService.racesArr;
+          this.raceTotals = this.racesService.racesTotals;
         },
         (err) => console.log(err)
       );
