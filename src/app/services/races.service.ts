@@ -4,11 +4,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/observable/forkJoin';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json'
-  })
-};
+// const httpOptions = {
+//   headers: new HttpHeaders({
+//     'Content-Type': 'application/json'
+//   })
+// };
 
 @Injectable()
 export class RacesService {
@@ -27,6 +27,7 @@ export class RacesService {
   baseUrl = 'http://localhost:8080/api/';
 
   racesArr: any[] = [];
+  racesTotals = {};
   editingRace: number = null;
 
   // *** Race admin functions
@@ -38,6 +39,7 @@ export class RacesService {
 
   setRaces(races: any[]) {
     this.racesArr = races;
+    this.aggRaceTotals();
   }
 
   saveRace(raceObj) {
@@ -95,6 +97,13 @@ export class RacesService {
     )
 
     return Observable.forkJoin(observableBatch);
+  }
+
+  aggRaceTotals() {
+    this.racesArr.map ( race => {
+      let raceTotal = race.candidates.reduce( (voteTot, candidate) => voteTot + candidate.candidate.votes, 0);
+      this.racesTotals[race._id] = raceTotal;
+    })
   }
 
 }
