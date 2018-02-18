@@ -13,11 +13,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router) {
-      this.authService.userChanged.subscribe(
-        (username: string) => this.currUserName = username
-      )
-  }
+    private router: Router) { }
 
   ngOnInit() {
     console.log('username', this.currUserName);

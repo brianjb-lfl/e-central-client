@@ -1,38 +1,13 @@
 .header-container {
-  width: 90%;
-  margin: 10px auto;
-  padding: 5px;
-  display: flex;
-  justify-content: space-between;
-  background-color: #cc0000;
-  border: 1px solid black;
-  border-radius: 8px;
+  height: 45px;
+  padding: 10px 20px;
+  background-image: url('../../../assets/images/blue-flag-bkgd-h.jpg');
 }
 
-.logo-block {
-  max-width: 55%;
-}
-
-.logo-block h1 {
-  color: white;
-}
-
-.nav-block {
-  width: 40%;
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-end;
-}
-
-.nav-block span {
-  width: 40%;
-  text-align: center;
-}
-
-a {
-  color: yellow;
-}
-
-a:hover {
-  cursor: pointer;
+h1 {
+  font-family: 'Prosto One', sans-serif;
+  font-size: 3.0em;
+  font-weight: 600;
+  color: #f4f4ff;
+  text-shadow: 2px 2px #a3a3a3;
 }

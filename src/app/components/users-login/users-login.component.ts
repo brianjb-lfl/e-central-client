@@ -46,10 +46,6 @@ export class UsersLoginComponent {
       )
   }
 
-  sendUser(username: string) {
-    this.authService.userChanged.emit(this.authService.currUser.username);
-  }
-
   onCancelLogin() {
     this.authService.userLogout();
     this.router.navigate(['/']);
