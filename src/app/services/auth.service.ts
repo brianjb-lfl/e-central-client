@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
@@ -17,6 +18,8 @@ export class AuthService {
   };
 
   constructor(private http: HttpClient) { }
+
+  userChanged = new EventEmitter<string>();
 
   userLogin(username, password) {
     const loginUrl = this.baseUrl + 'auth/login';

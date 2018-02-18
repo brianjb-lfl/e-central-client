@@ -4,12 +4,12 @@
   </div>
 
   <!-- no user logged in -->
-  <div *ngIf="currUserName === 'no session'"class="nav-block header-block">
+  <div *ngIf="currUserName === 'no session' || !currUserName"class="nav-block header-block">
     <span><a (click)="onLogin()">Login</a></span>
     <span><a (click)="onRegister()">Register</a></span>
   </div>
   <!-- user logged in -->
-  <div *ngIf="currUserName !== 'no session'" class="nav-block header-block">
+  <div *ngIf="currUserName && currUserName !== 'no session'" class="nav-block header-block">
     <a (click)="onLogout()">Logout</a>
   </div>
 </div>
