@@ -1,19 +1,86 @@
-.container {
-  width: 50%;
-  margin: 0 0 0 5%;
+.nav-bar {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  background-color: #d8d8d8;
 }
 
-.nav-bar {
+.component-nav, .spacer-div, .app-nav {
+  width: 100%;
   display: flex;
+  justify-content: space-around;
+}
+
+.component-nav {
+  flex: 3;
+}
+
+.spacer-div {
+  flex: 2;
+}
+
+.app-nav {
+  flex: 2;
+}
+
+.nav-text {
+  text-transform: uppercase;
+  color: #8d8a99;
+  font-weight: 900;
+}
+
+.vote-option {
+  text-transform: uppercase;
+  background-color: yellow;
+  color: red;
+  font-weight: 900;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+.item-selected {
+  border-bottom: 2px solid #7273e2;
+}
+
+.container {
+  width: 60%;
+  margin: 12px 0 0 5%;
 }
 
 .race-header {
   margin: 12px 0 4px 0;
-  padding: 4px;
-  background: linear-gradient(to right, #acacad, white);
+  padding: 1px 1px 1px 10px;
+  background: linear-gradient(to right, #d8d8d8, white);
   font-weight: 900;
 }
 
 .candidate-row {
   margin-left: 12px;
+}
+
+.candidate-name-text {
+  display: inline-block;
+  width: 100px;
+  margin: 0 4px;
+}
+
+.candidate-votes-text {
+  display: inline-block;
+  text-align: right;
+  width: 60px;
+  margin: 0 4px;
+}
+
+.candidate-votepct-text {
+  display: inline-block;
+  text-align: right;
+  width: 50px;
+  margin: 0 4px;
 }

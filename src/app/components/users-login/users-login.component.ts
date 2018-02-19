@@ -14,7 +14,6 @@ export class UsersLoginComponent {
 
   username = '';
   password = '';
-  hasVotedBlock = false;
 
   constructor(
     private authService: AuthService,
@@ -27,17 +26,11 @@ export class UsersLoginComponent {
           this.username = '';
           this.password = '';
           this.authService.processToken(res['authToken']);
-          console.log(this.authService.currUser);
           if(this.authService.currUser.adminUser) {
             this.router.navigate(['/races-admin']);
           }
           else {
-            if(this.authService.currUser.hasVoted) {
-              this.hasVotedBlock = true;
-            }
-            else {
-              this.router.navigate(['/vote']);
-            }
+            this.router.navigate(['/results']);
           }
         },
         error => {

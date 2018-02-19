@@ -1,46 +1,74 @@
-<div class="container">
-  <div class="nav-bar">
-    <div class="component-nav">
-      <span>my races</span>
-      <span>all races</span>
-    </div>
-    <div class="divider-div">
-
-    </div>
-    <div class="app-nav">
-      <span>login</span>
-      <span>register</span>
-    </div>
+<div class="nav-bar">
+  
+  <div class="component-nav">
+    <a (click)="onMyRacesClick()">
+      <div *ngIf="currUser.username !== 'no session'"class="nav-text" [class.item-selected]="raceDisplayMode==='user'">my races</div>
+    </a>
+    <a (click)="onAllRacesClick()">
+      <div class="nav-text" [class.item-selected]="raceDisplayMode==='all'">all races</div>
+    </a>
+    <a (click)="onGoVoteClick()">
+      <div *ngIf="!currUser.hasVoted" class="vote-option">go vote</div> 
+    </a>
   </div>
-  <h3>Race Results</h3>
+  
+  <div class="spacer-div">
+
+  </div>
+  
+  <div class="app-nav">
+    <a (click)="onGoLoginClick()">
+      <div class="nav-text">login</div>
+    </a>
+    <a (click)="onGoRegisterClick()">
+      <div class="nav-text">register</div>
+    </a>
+  </div>
+
+</div>
+
+<div class="container">
+  
+  <h3>Current Totals</h3>
   <div *ngFor="let race of races">
 
-    <!-- state level race -->
-    <div *ngIf="race.city==='n/a'" class="race-header">
-      {{race.type}} - 
-      State of {{race.state}}
-    </div>
+    <div *ngIf=
+      "raceDisplayMode==='all' ||
+      (
+        currUser.state===race.state &&
+        (race.city==='n/a' || currUser.city===race.city) &&
+        (race.district==='n/a' || currUser.district===race.district)
+      )"
+      class="race-container">
 
-    <!-- city level race -->
-    <div *ngIf="race.district==='n/a' && race.city !=='n/a'" class="race-header">
-      {{race.type}} - 
-      {{race.city}}, {{race.state}}
-    </div>
-
-    <!-- district level race -->
-    <div *ngIf="race.district !=='n/a'" class="race-header">
-      {{race.type}} - 
-      {{race.city}}, {{race.state}} - District {{race.district}}
-    </div>
-
-    <div *ngFor="let candidate of race.candidates" class="candidate-row">
-      <div class="candidate-row">
-        {{candidate.candidate.name}} - 
-        {{candidate.candidate.votes | number}}
-        {{(candidate.candidate.votes / raceTotals[race._id]) | percent: '0.1'}}
+      <!-- state level race -->
+      <div *ngIf="race.city==='n/a'" class="race-header">
+        {{race.type}} - 
+        State of {{race.state}}
       </div>
+
+      <!-- city level race -->
+      <div *ngIf="race.district==='n/a' && race.city !=='n/a'" class="race-header">
+        {{race.type}} - 
+        {{race.city}}, {{race.state}}
+      </div>
+
+      <!-- district level race -->
+      <div *ngIf="race.district !=='n/a'" class="race-header">
+        {{race.type}} - 
+        {{race.city}}, {{race.state}} - District {{race.district}}
+      </div>
+
+      <div *ngFor="let candidate of race.candidates" class="candidate-row">
+        <div class="candidate-row">
+          <div class="candidate-name-text">{{candidate.candidate.name}}</div> 
+          <div class="candidate-votes-text">{{candidate.candidate.votes | number}}</div>
+          <div class="candidate-votepct-text">{{(candidate.candidate.votes / raceTotals[race._id]) | percent: '0.1'}}</div>
+        </div>
+      </div>
+
     </div>
+
   </div>
-  <button type="button" (click)="onGoVoteClick()" class="form-btn">Login</button>
-  <button type="button" (click)="onGoRegisterClick()" class="form-btn">Register</button>
+
 </div>

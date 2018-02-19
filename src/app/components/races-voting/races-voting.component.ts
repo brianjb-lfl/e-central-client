@@ -21,7 +21,8 @@ export class RacesVotingComponent implements OnInit {
 
   ngOnInit() {
     if(this.authService.currUser.adminUser 
-      || this.authService.currUser.username === 'no session') {
+      || this.authService.currUser.username === 'no session'
+      || this.authService.currUser.hasVoted) {
       this.router.navigate(['/']);
     }
 
@@ -45,7 +46,6 @@ export class RacesVotingComponent implements OnInit {
       .subscribe(
         () => { 
           this.votes = {};
-          this.authService.userLogout();
           this.router.navigate(['/']);
         },
         (err) => console.log(err)
