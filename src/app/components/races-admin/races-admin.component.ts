@@ -49,9 +49,11 @@ export class RacesAdminComponent implements OnInit {
   }
 
   onEdit(e) {
+    console.log(e.target.parentElement.id);
     this.racesService.editingRace = this.racesService.racesArr
       .map( race => race._id )
       .indexOf( e.target.parentElement.id );
+    console.log(this.racesService.editingRace);
     this.router.navigate(['/race-edit']);
   }
 

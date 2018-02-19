@@ -2,7 +2,9 @@
   
   <div class="component-nav">
     <a (click)="onMyRacesClick()">
-      <div *ngIf="currUser.username !== 'no session'"class="nav-text" [class.item-selected]="raceDisplayMode==='user'">my races</div>
+      <div *ngIf="currUser.username !== 'no session'"
+        class="nav-text" 
+        [class.item-selected]="raceDisplayMode==='user'">my races</div>
     </a>
     <a (click)="onAllRacesClick()">
       <div class="nav-text" [class.item-selected]="raceDisplayMode==='all'">all races</div>
@@ -56,7 +58,7 @@
       <!-- district level race -->
       <div *ngIf="race.district !=='n/a'" class="race-header">
         {{race.type}} - 
-        {{race.city}}, {{race.state}} - District {{race.district}}
+        {{race.city}}, {{race.state}} - District {{race.district}} {{race.racelevel}} {{race.racesort}}
       </div>
 
       <div *ngFor="let candidate of race.candidates" class="candidate-row">

@@ -22,6 +22,8 @@ export class RaceEditComponent implements OnInit {
     city: '',
     state: '',
     district: '',
+    racelevel: null,
+    racesort: null,
     candidates: []
   }
 

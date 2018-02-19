@@ -52,6 +52,31 @@
           required>
       </div>
 
+      <!-- Race Level -->
+      <div class="form-group">
+          <label for="racelevel">Race Level</label>
+          <input 
+            [(ngModel)]="currRace.racelevel"
+            name="racelevel"
+            type="text"
+            class="form-input"
+            id="racelevel"
+            options
+            required>
+        </div>
+
+      <!-- Race Sort -->
+      <div class="form-group">
+          <label for="racesort">Race Sort</label>
+          <input 
+            [(ngModel)]="currRace.racesort"
+            name="racesort"
+            type="text"
+            class="form-input"
+            id="racesort"
+            required>
+        </div>
+
       <!-- Candidates list -->
       <div class="form-group candidate-edit-block">
         <label for="candidates">Candidates</label>

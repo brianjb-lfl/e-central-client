@@ -43,7 +43,13 @@ export class RacesResultsComponent implements OnInit {
       .subscribe(
         (races: any[]) => {
           this.racesService.setRaces(races);
-          this.races = this.racesService.racesArr;
+          this.races = [...this.racesService.racesArr].sort( (a, b) => {
+            if(a.racelevel < b.racelevel) return -1;
+            if(a.racelevel > b.racelevel) return 1;
+            if(a.racesort < b.racesort) return -1;
+            if(a.racesort > b.racesort) return 1;
+            return -1;
+          })
           this.raceTotals = this.racesService.racesTotals;
         },
         (err) => console.log(err)

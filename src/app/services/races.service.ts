@@ -46,7 +46,7 @@ export class RacesService {
     this.jwtHeaders
       .append('Authorization', 'Bearer ' + localStorage.getItem('jwt_token'));
     
-    if(this.editingRace) {
+    if(this.editingRace>=0) {
       const putRaceUrl = this.baseUrl + `races/${raceObj._id}`;
       return this.http.put(putRaceUrl, raceObj, { headers: this.jwtHeaders });
     }
