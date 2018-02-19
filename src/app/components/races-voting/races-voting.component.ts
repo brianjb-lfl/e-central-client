@@ -54,8 +54,7 @@ export class RacesVotingComponent implements OnInit {
 
   onCancelVote() {
     this.votes = {};
-    this.authService.userLogout();
-    this.router.navigate(['/']);
+    this.router.navigate(['/results']);
   }
 
 }

@@ -1,0 +1,21 @@
+.btn-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.register-text {
+  display: flex;
+  justify-content: center;
+  margin-top: -10px;
+  font-size: 1em;
+}
+
+a {
+  text-decoration: underline;
+  color: blue;
+}
+
+a:hover {
+  cursor: pointer;
+}

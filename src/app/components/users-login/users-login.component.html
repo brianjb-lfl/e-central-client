@@ -1,7 +1,11 @@
+<div class="nav-bar">
+  <span>  </span>
+</div>
+
 <div class="container">
-  <h3>Log In</h3>
+  <h1>Log In</h1>
   <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-    <div class="form-group">
+    <div class="form-group form-group-lg">
       <label for="username">Username</label>
       <input 
         [(ngModel)]="username"
@@ -11,7 +15,7 @@
         id="username"
         required>
     </div>
-    <div class="form-group">
+    <div class="form-group form-group-lg">
       <label for="password">Password</label>
       <input 
         [(ngModel)]="password"
@@ -21,9 +25,13 @@
         id="password"
         required>
     </div>
-    <button type="submit" class="form-btn">Login</button>
-    <button type="button" (click)="onRegClick()" class="form-btn">Register</button>
-    <button type="button" (click)="onCancelLogin()" class="form-btn">Cancel</button>
+    <div class="register-text">
+      <span>(Not a user?  <a (click)="onRegClick()">Register</a>)</span>
+    </div>
+    <div class="btn-row">
+      <button type="submit" class="form-btn form-btn-lg">Login</button>
+      <button type="button" (click)="onCancelLogin()" class="form-btn form-btn-lg">Cancel</button>
+    </div>
   </form>
   <div *ngIf="hasVotedBlock">
     <h4>We appreciate the enthusiasm, but ...</h4>
