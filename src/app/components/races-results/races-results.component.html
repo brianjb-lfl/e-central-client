@@ -14,16 +14,22 @@
     </a>
   </div>
   
-  <div class="spacer-div">
+  <div class="spacer-nav">
 
   </div>
   
-  <div class="app-nav">
+  <div *ngIf="currUser.username==='no session'" class="app-nav">
     <a (click)="onGoLoginClick()">
       <div class="nav-text">login</div>
     </a>
     <a (click)="onGoRegisterClick()">
       <div class="nav-text">register</div>
+    </a>
+  </div>
+
+  <div *ngIf="currUser.username!=='no session'" class="app-nav">
+    <a (click)="onGoLogoutClick()">
+      <div class="nav-text">logout</div>
     </a>
   </div>
 
@@ -58,7 +64,7 @@
       <!-- district level race -->
       <div *ngIf="race.district !=='n/a'" class="race-header">
         {{race.type}} - 
-        {{race.city}}, {{race.state}} - District {{race.district}} {{race.racelevel}} {{race.racesort}}
+        {{race.city}}, {{race.state}} - District {{race.district}}
       </div>
 
       <div *ngFor="let candidate of race.candidates" class="candidate-row">

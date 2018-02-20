@@ -1,5 +1,9 @@
+<div class="nav-bar">
+
+</div>
+
 <div class="container">
-  <h3>Register</h3>
+  <h1>Register</h1>
   <form (ngSubmit)="onSubmit(f)" #f="ngForm">
     <div class="form-group">
       <label for="username">Username</label>
@@ -61,7 +65,9 @@
         id="adminUser"
         required>
     </div>
-    <button type="submit" class="form-btn">Register</button>
-    <button type="button" (click)="onCancel()" class="form-btn">Cancel</button>
+    <div class="form-btn-row">
+      <button type="submit" class="form-btn">Register</button>
+      <button type="button" (click)="onCancel()" class="form-btn">Cancel</button>
+    </div>
   </form>
 </div>

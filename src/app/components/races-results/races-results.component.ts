@@ -82,5 +82,10 @@ export class RacesResultsComponent implements OnInit {
     this.router.navigate(['/register']);
   }
 
+  onGoLogoutClick() {
+    this.authService.userLogout();
+    this.currUser = this.authService.currUser;
+    this.router.navigate(['/']);
+  }
 
 }

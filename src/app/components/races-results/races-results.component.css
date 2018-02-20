@@ -1,3 +1,9 @@
+.race-container {
+  width: 360px;
+  margin: 20px auto;
+  font-size: 1.2em;
+}
+
 .race-header {
   margin: 12px 0 4px 0;
   padding: 1px 1px 1px 10px;
@@ -11,20 +17,20 @@
 
 .candidate-name-text {
   display: inline-block;
-  width: 100px;
+  width: 120px;
   margin: 0 4px;
 }
 
 .candidate-votes-text {
   display: inline-block;
   text-align: right;
-  width: 60px;
+  width: 70px;
   margin: 0 4px;
 }
 
 .candidate-votepct-text {
   display: inline-block;
   text-align: right;
-  width: 50px;
+  width: 60px;
   margin: 0 4px;
 }
