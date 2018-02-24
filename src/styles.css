@@ -23,7 +23,7 @@ h1 {
 
 .nav-bar {
   width: 100%;
-  height: 1.4em;
+  height: 1.5em;
   margin: 0 0 12px 0;
   padding: 1px 0;
   display: flex;
@@ -48,9 +48,9 @@ h1 {
 }
 
 .nav-text {
-  font-size: 1.0em;
+  font-size: 1.1em;
   text-transform: uppercase;
-  color: #8d8a99;
+  color: #817d91;
   font-weight: 900;
 }
 

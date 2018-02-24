@@ -27,3 +27,27 @@
 .candidate-edit-block a:hover {
   cursor: pointer;
 }
+
+/* font-awesome icons */
+
+.fa-add-candidate {
+  margin: 0 8px;
+  text-align: right;
+  color: #5c835c;
+}
+
+.fa-save-candidate {
+  margin: 0 8px;
+  color: #5c835c;
+}
+
+.fa-cancel-candidate {
+  margin: 0 8px;
+  color: #af5c5c;
+}
+
+.fa-clear-candidate {
+  font-size: 0.9em;
+  margin: 0 8px;
+  color: #af5c5c;
+}

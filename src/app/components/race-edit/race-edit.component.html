@@ -1,40 +1,25 @@
-<div class="container">
-  <div class="nav-bar">
+<div class="nav-bar">
 
-    <div class="component-nav">
-      <a (click)="onMyRacesClick()">
-        <div *ngIf="currUser.username !== 'no session'"
-          class="nav-text" 
-          [class.item-selected]="raceDisplayMode==='user'">my races</div>
-      </a>
-      <a (click)="onAllRacesClick()">
-        <div class="nav-text" [class.item-selected]="raceDisplayMode==='all'">all races</div>
-      </a>
-      <a (click)="onGoVoteClick()">
-        <div *ngIf="!currUser.hasVoted" class="vote-option">go vote</div> 
-      </a>
-    </div>
-    
-    <div class="spacer-nav">
-  
-    </div>
-    
-    <div *ngIf="currUser.username==='no session'" class="app-nav">
-      <a (click)="onGoLoginClick()">
-        <div class="nav-text">login</div>
-      </a>
-      <a (click)="onGoRegisterClick()">
-        <div class="nav-text">register</div>
-      </a>
-    </div>
-  
-    <div *ngIf="currUser.username!=='no session'" class="app-nav">
-      <a (click)="onGoLogoutClick()">
-        <div class="nav-text">logout</div>
-      </a>
-    </div>
-    
+  <div class="component-nav">
+    <a (click)="onSaveRace()" class="nav-text">
+      save
+    </a>
+    <a (click)="onCancelEdit()" class="nav-text">
+      cancel
+    </a>
   </div>
+  
+  <div class="spacer-nav">
+
+  </div>
+  
+  <div class="app-nav">
+
+  </div>
+  
+</div>
+
+<div class="container">
 
   <h3>Race Details</h3>
 
@@ -117,11 +102,15 @@
     <div class="form-group">
       <label for="candidates">Candidates</label>
       <div class="form-group candidate-edit-block">
-        <a (click)="onAddCandidate()">+</a>
+        <a (click)="onAddCandidate()">        
+          <i class="fas fa-plus fa-add-candidate"></i>
+        </a>
         <div *ngFor="let candidate of currRace.candidates">
           <div class="candidate-edit-row" id="{{candidate._id}}">
             <span>{{candidate.candidate.name}}</span>
-            <a (click)="onDelCandidate($event)">X</a>
+            <a (click)="onDelCandidate($event)">
+              <i class="fas fa-times fa-clear-candidate"></i>
+            </a>
           </div>
         </div>
 
@@ -133,14 +122,16 @@
             type="text"
             class="form-input"
             id="newCandidateName">
-          <button type="button" (click)="addNewCandidate()" class="form-btn-small">Add</button>
-          <button type="button" (click)="cancelNewCandidate()" class="form-btn-small">Cancel</button>
+          <a (click)="saveNewCandidate()">
+            <i class="fas fa-check fa-save-candidate"></i>
+          </a>
+          <a (click)="cancelNewCandidate()">
+            <i class="fas fa-times fa-cancel-candidate"></i>
+          </a>
         </div>
       </div>
     </div>
 
-    <button type="submit" class="form-btn">Save</button>
-    <button type="button" (click)="onCancelEdit()" class="form-btn">Cancel</button>
   </form>
 
 </div>

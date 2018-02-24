@@ -42,7 +42,7 @@ export class RaceEditComponent implements OnInit {
 
   // *** Race editing
 
-  onSubmit(form: NgForm) {
+  onSaveRace() {
     this.racesService.saveRace(this.currRace)
       .subscribe( () => {
         this.router.navigate(['/races-admin']);
@@ -66,7 +66,7 @@ export class RaceEditComponent implements OnInit {
 
   // *** New candidate editing
 
-  addNewCandidate() {
+  saveNewCandidate() {
     this.currRace.candidates = 
       [...this.currRace.candidates, {candidate: {name: this.newCandidateName}}];
     this.clearAddingCandidate();
