@@ -1,85 +1,122 @@
 <div class="container">
+  <div class="nav-bar">
 
-    <h3>Race Details</h3>
+    <div class="component-nav">
+      <a (click)="onMyRacesClick()">
+        <div *ngIf="currUser.username !== 'no session'"
+          class="nav-text" 
+          [class.item-selected]="raceDisplayMode==='user'">my races</div>
+      </a>
+      <a (click)="onAllRacesClick()">
+        <div class="nav-text" [class.item-selected]="raceDisplayMode==='all'">all races</div>
+      </a>
+      <a (click)="onGoVoteClick()">
+        <div *ngIf="!currUser.hasVoted" class="vote-option">go vote</div> 
+      </a>
+    </div>
+    
+    <div class="spacer-nav">
+  
+    </div>
+    
+    <div *ngIf="currUser.username==='no session'" class="app-nav">
+      <a (click)="onGoLoginClick()">
+        <div class="nav-text">login</div>
+      </a>
+      <a (click)="onGoRegisterClick()">
+        <div class="nav-text">register</div>
+      </a>
+    </div>
+  
+    <div *ngIf="currUser.username!=='no session'" class="app-nav">
+      <a (click)="onGoLogoutClick()">
+        <div class="nav-text">logout</div>
+      </a>
+    </div>
+    
+  </div>
 
-    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-      
-      <!-- Race type -->
-      <div class="form-group">
-        <label for="type">Race Type</label>
+  <h3>Race Details</h3>
+
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    
+    <!-- Race type -->
+    <div class="form-group">
+      <label for="type">Race Type</label>
+      <input 
+        [(ngModel)]="currRace.type"
+        name="type"
+        type="text"
+        class="form-input"
+        id="type"
+        required>
+    </div>
+
+    <!-- City -->
+    <div class="form-group">
+      <label for="city">City</label>
+      <input 
+        [(ngModel)]="currRace.city"
+        name="city"
+        type="text"
+        class="form-input"
+        id="city"
+        required>
+    </div>
+
+    <!-- State -->
+    <div class="form-group">
+      <label for="state">State</label>
+      <input 
+        [(ngModel)]="currRace.state"
+        name="state"
+        type="text"
+        class="form-input"
+        id="state"
+        required>
+    </div>
+
+    <!-- District -->
+    <div class="form-group">
+      <label for="district">District</label>
+      <input 
+        [(ngModel)]="currRace.district"
+        name="district"
+        type="text"
+        class="form-input"
+        id="district"
+        required>
+    </div>
+
+    <!-- Race Level -->
+    <div class="form-group">
+        <label for="racelevel">Race Level</label>
         <input 
-          [(ngModel)]="currRace.type"
-          name="type"
+          [(ngModel)]="currRace.racelevel"
+          name="racelevel"
           type="text"
-          class="form-input"
-          id="type"
+          class="form-input form-input-short"
+          id="racelevel"
+          options
           required>
       </div>
 
-      <!-- City -->
-      <div class="form-group">
-        <label for="city">City</label>
+    <!-- Race Sort -->
+    <div class="form-group">
+        <label for="racesort">Race Sort</label>
         <input 
-          [(ngModel)]="currRace.city"
-          name="city"
+          [(ngModel)]="currRace.racesort"
+          name="racesort"
           type="text"
-          class="form-input"
-          id="city"
+          class="form-input form-input-short"
+          id="racesort"
           required>
-      </div>
+    </div>
 
-      <!-- State -->
-      <div class="form-group">
-        <label for="state">State</label>
-        <input 
-          [(ngModel)]="currRace.state"
-          name="state"
-          type="text"
-          class="form-input"
-          id="state"
-          required>
-      </div>
-
-      <!-- District -->
-      <div class="form-group">
-        <label for="district">District</label>
-        <input 
-          [(ngModel)]="currRace.district"
-          name="district"
-          type="text"
-          class="form-input"
-          id="district"
-          required>
-      </div>
-
-      <!-- Race Level -->
-      <div class="form-group">
-          <label for="racelevel">Race Level</label>
-          <input 
-            [(ngModel)]="currRace.racelevel"
-            name="racelevel"
-            type="text"
-            class="form-input form-input-short"
-            id="racelevel"
-            options
-            required>
-        </div>
-
-      <!-- Race Sort -->
-      <div class="form-group">
-          <label for="racesort">Race Sort</label>
-          <input 
-            [(ngModel)]="currRace.racesort"
-            name="racesort"
-            type="text"
-            class="form-input form-input-short"
-            id="racesort"
-            required>
-        </div>
-
-      <!-- Candidates list -->
+    <!-- Candidates list -->
+    <div class="form-group">
+      <label for="candidates">Candidates</label>
       <div class="form-group candidate-edit-block">
-        <label for="candidates">Candidates</label>
         <a (click)="onAddCandidate()">+</a>
         <div *ngFor="let candidate of currRace.candidates">
           <div class="candidate-edit-row" id="{{candidate._id}}">
@@ -96,13 +133,14 @@
             type="text"
             class="form-input"
             id="newCandidateName">
-          <button type="button" (click)="addNewCandidate()" class="form-btn">Add</button>
-          <button type="button" (click)="cancelNewCandidate()" class="form-btn">Cancel</button>
+          <button type="button" (click)="addNewCandidate()" class="form-btn-small">Add</button>
+          <button type="button" (click)="cancelNewCandidate()" class="form-btn-small">Cancel</button>
         </div>
       </div>
+    </div>
 
-      <button type="submit" class="form-btn">Save</button>
-      <button type="button" (click)="onCancelEdit()" class="form-btn">Cancel</button>
-    </form>
+    <button type="submit" class="form-btn">Save</button>
+    <button type="button" (click)="onCancelEdit()" class="form-btn">Cancel</button>
+  </form>
 
 </div>

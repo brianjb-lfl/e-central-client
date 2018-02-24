@@ -7,17 +7,21 @@
   border-radius: 8px;
 }
 
-.candidate-edit-row {
-  margin: 2px 8px;
-  font-size: 1.2em;
-}
-
 .candidate-edit-block {
-  margin: 16px 8px;
+  display: inline-block;
+  width: 90%;
+  margin: 10px auto;
+  height: auto;
+  padding: 2px 8px;
+  font-size: 1.2em;
+  background-color: #f2f2f7;
+  border: 2px solid #716f74;
+  border-radius: 6px;
 }
 
-.candidate-edit-block label {
-  margin-bottom: 6px;
+.candidate-edit-row {
+  margin: 3px 24px;
+  font-size: 1.1em;
 }
 
 .candidate-edit-block a:hover {
