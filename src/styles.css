@@ -99,7 +99,7 @@ form {
   font-weight: 900;
 }
 
-.form-group input {
+.form-input {
   width: 60%;
   height: 22px;
   padding: 2px 4px;
@@ -107,6 +107,10 @@ form {
   background-color: #f2f2f7;
   border: 2px solid #716f74;
   border-radius: 6px;
+}
+
+.form-input-short {
+  width: 30%;
 }
 
 .form-group input[type="checkbox"] {
@@ -125,7 +129,7 @@ form {
   font-size: 1.1em;
   font-weight: 900;
   width: 80px;
-  border-radius: 3px;
+  border-radius: 4px;
   margin: 8px 4px;
 }
 
