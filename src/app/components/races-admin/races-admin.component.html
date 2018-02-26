@@ -1,14 +1,52 @@
+<div class="nav-bar">
+
+  <div class="component-nav">
+
+  </div>
+  
+  <div class="spacer-nav">
+
+  </div>
+  
+  <div class="app-nav">
+    <a (click)="onLogoutClick()" class="nav-text">
+      logout
+    </a>
+  </div>
+    
+</div>
+
 <div class="container">
 
   <h3>Current Races</h3>
-  <button type="button" (click)="onAdd()">Add</button>
+  <a (click)="onAdd()">
+    <i class="fas fa-plus fa-add-race"></i>
+  </a>
 
-  <div *ngFor="let race of races" class="race-block" id="{{race._id}}">
-    <div class="race-header">
-      {{race.type}}<br>
-      St: {{race.state}}
-      City: {{race.city}}
-      Dist: {{race.district}}<br>
+  <div *ngFor="let race of races" class="race-block">
+    <div class="race-header-line1">
+      <span>{{race.type}}</span>
+      <div class="race-controls" id="{{race._id}}">
+        <a (click)="onEdit($event)">
+          <i class="fas fa-edit fa-edit-race"></i>
+        </a>
+        <a (click)="onDelete($event)">
+          <i class="fas fa-times fa-clear-race"></i>
+        </a>
+      </div>
+    </div>
+    <div class="race-header-data">
+      <div *ngIf="race.city==='n/a'">
+        State of {{race.state}}
+      </div>
+
+      <div *ngIf="race.district==='n/a' && race.city!=='n/a'">
+        {{race.city}}, {{race.state}}
+      </div>
+
+      <div *ngIf="race.district!=='n/a'">
+        {{race.city}}, {{race.state}} - District {{race.district}}
+      </div>
       Level: {{race.racelevel}}
       Sort: {{race.racesort}}
     </div>
@@ -18,9 +56,7 @@
         {{candidate.candidate.name}}
       </div>
     </div>
-  
-    <button (click)="onEdit($event)">Edit</button>
-    <button (click)="onDelete($event)">Del</button>
+
   </div>
 
 </div>

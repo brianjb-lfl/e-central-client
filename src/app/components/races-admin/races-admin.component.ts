@@ -49,16 +49,14 @@ export class RacesAdminComponent implements OnInit {
   }
 
   onEdit(e) {
-    console.log(e.target.parentElement.id);
     this.racesService.editingRace = this.racesService.racesArr
       .map( race => race._id )
-      .indexOf( e.target.parentElement.id );
-    console.log(this.racesService.editingRace);
+      .indexOf( e.target.parentElement.parentElement.id );
     this.router.navigate(['/race-edit']);
   }
 
   onDelete(e) {
-    const delRaceId = e.target.parentElement.id;
+    const delRaceId = e.target.parentElement.parentElement.id;
     this.racesService.deleteRace(delRaceId)
       .subscribe( 
         () => {
@@ -69,6 +67,11 @@ export class RacesAdminComponent implements OnInit {
         },
         (err) => console.log(err)
       );
+  }
+
+  onLogoutClick() {
+    this.authService.userLogout();
+    this.router.navigate(['/']);
   }
 
 }
