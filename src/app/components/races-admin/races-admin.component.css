@@ -1,8 +1,8 @@
 .race-block {
   width: 70%;
   margin: 10px auto;
-  padding: 4px 12px;
-  background-color: #cfcfdb;
+  padding: 8px 16px;
+  background: radial-gradient(#f7f7f7, #b9b9b9);
   border: 1px solid black;
   border-radius: 8px;
   font-size: 1.1em;
@@ -10,6 +10,7 @@
 
 .candidate-row {
   margin-left: 8px;
+  color: var(--blue-highlight);
 }
 
 .race-header-line1 {
@@ -21,10 +22,24 @@
   margin-bottom: 8px;
 }
 
+.race-type, .race-locale {
+  font-weight: 900;
+}
+
+.sort-data {
+  display: inline-block;
+  width: 40%;
+}
+
 /* font-awesome icons */
 
+.race-add-control {
+  width: 70%;
+  margin: 12px auto;
+}
+
 .fa-add-race {
-  font-size: 0.9em;
+  font-size: 1.1em;
   text-align: right;
   color: #5c835c;
 }

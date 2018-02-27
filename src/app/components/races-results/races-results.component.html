@@ -7,7 +7,7 @@
         [class.item-selected]="raceDisplayMode==='user'">my races</div>
     </a>
     <a (click)="onAllRacesClick()">
-      <div class="nav-text" [class.item-selected]="raceDisplayMode==='all'">all races</div>
+      <div class="nav-text" [class.item-selected]="raceDisplayMode==='all' && currUser.username !== 'no session'">all races</div>
     </a>
     <a (click)="onGoVoteClick()">
       <div *ngIf="!currUser.hasVoted" class="vote-option">go vote</div> 

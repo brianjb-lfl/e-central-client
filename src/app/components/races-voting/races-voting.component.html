@@ -1,32 +1,64 @@
+<div class="nav-bar">
+  
+  <div class="component-nav">
+
+  </div>
+  
+  <div class="spacer-nav">
+
+  </div>
+  
+  <div class="app-nav">
+
+  </div>
+
+</div>
+
 <div class="container">
-  <h3>Cast your votes!</h3>
+  <h1>Ballot</h1>
+  <h3>{{currUser.city}}, {{currUser.state}} - District {{currUser.district}}</h3>
   <div *ngFor="let race of races">
-    <div class="race-header">
-      {{race.state}}
-      {{race.city}}
-      {{race.type}}
-      {{race.district}}
-    </div>
-    <div *ngFor="let candidate of race.candidates" class="candidate-row">
-      <div class="candidate-row">
-        <label>
-          <input
-            type="radio"
-            name="{{race._id}}"
-            [(ngModel)]="votes[race._id]"
-            value="{{candidate._id}}">
-            {{candidate.candidate.name}}
-        </label>
+    <div *ngIf=
+      "(
+        currUser.state===race.state &&
+        (race.city==='n/a' || currUser.city===race.city) &&
+        (race.district==='n/a' || currUser.district===race.district)
+      )"
+      class="race-container">
+
+      <div *ngIf="race.city==='n/a'" class="race-header">
+        {{race.type}} - State of {{race.state}}
       </div>
+
+      <div *ngIf="race.city!=='n/a' && race.district==='n/a'" class="race-header">
+        {{race.type}} - {{race.city}}, {{race.state}}
+      </div>
+
+      <div *ngIf="race.district!=='n/a'" class="race-header">
+        {{race.type}} - {{race.city}}, {{race.state}}, Dist {{race.district}}
+      </div>
+
+      <div *ngFor="let candidate of race.candidates" class="candidate-row">
+        <div class="candidate-row">
+          <label>
+            <input
+              type="radio"
+              name="{{race._id}}"
+              [(ngModel)]="votes[race._id]"
+              value="{{candidate._id}}">
+              {{candidate.candidate.name}}
+          </label>
+        </div>
+      </div>
+      <label>
+        <input
+          type="radio"
+          name="{{race._id}}"
+          [(ngModel)]="votes[race._id]"
+          value="abstain">
+          - No Vote -
+      </label>
     </div>
-    <label>
-      <input
-        type="radio"
-        name="{{race._id}}"
-        [(ngModel)]="votes[race._id]"
-        value="abstain">
-        - No Vote -
-    </label>
   </div>
   <button type="button" (click)="onVote()" class="form-btn">Vote!</button>
   <button type="button" (click)="onCancelVote()" class="form-btn">Cancel</button>

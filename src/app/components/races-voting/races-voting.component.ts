@@ -19,6 +19,15 @@ export class RacesVotingComponent implements OnInit {
 
   votes = {};
 
+  currUser = {
+    username: 'no session',
+    city: '',
+    state: '',
+    district: '',
+    adminUser: false,
+    hasVoted: true,
+  };
+
   ngOnInit() {
     if(this.authService.currUser.adminUser 
       || this.authService.currUser.username === 'no session'
@@ -26,7 +35,12 @@ export class RacesVotingComponent implements OnInit {
       this.router.navigate(['/']);
     }
 
+    this.getUser();
     this.getRaces();
+  }
+
+  getUser() {
+    this.currUser = this.authService.currUser;
   }
 
   getRaces() {
@@ -34,7 +48,13 @@ export class RacesVotingComponent implements OnInit {
       .subscribe(
         (races: any[]) => {
           this.racesService.setRaces(races);
-          this.races = this.racesService.racesArr
+          this.races = [...this.racesService.racesArr].sort( (a, b) => {
+            if(a.racelevel < b.racelevel) return -1;
+            if(a.racelevel > b.racelevel) return 1;
+            if(a.racesort < b.racesort) return -1;
+            if(a.racesort > b.racesort) return 1;
+            return -1;
+          })
           this.races.forEach( race => this.votes[race._id] = null);
         },
         (err) => console.log(err)

@@ -18,14 +18,15 @@
 
 <div class="container">
 
-  <h3>Current Races</h3>
-  <a (click)="onAdd()">
-    <i class="fas fa-plus fa-add-race"></i>
-  </a>
-
+  <h1>Race Administration</h1>
+  <div class="race-add-control">
+    <a (click)="onAdd()">
+      <i class="fas fa-plus fa-add-race"></i>
+    </a>
+  </div>
   <div *ngFor="let race of races" class="race-block">
     <div class="race-header-line1">
-      <span>{{race.type}}</span>
+      <span class="race-type">{{race.type}}</span>
       <div class="race-controls" id="{{race._id}}">
         <a (click)="onEdit($event)">
           <i class="fas fa-edit fa-edit-race"></i>
@@ -37,18 +38,19 @@
     </div>
     <div class="race-header-data">
       <div *ngIf="race.city==='n/a'">
-        State of {{race.state}}
+        <span class="race-locale">State of {{race.state}}</span>
       </div>
 
       <div *ngIf="race.district==='n/a' && race.city!=='n/a'">
-        {{race.city}}, {{race.state}}
+        <span class="race-locale">{{race.city}}, {{race.state}}</span>
       </div>
 
       <div *ngIf="race.district!=='n/a'">
-        {{race.city}}, {{race.state}} - District {{race.district}}
+        <span class="race-locale">{{race.city}}, {{race.state}} - District {{race.district}}</span>
       </div>
-      Level: {{race.racelevel}}
-      Sort: {{race.racesort}}
+      
+      <span class="sort-data">Level: {{race.racelevel}}</span>
+      <span class="sort-data">Sort: {{race.racesort}}</span>
     </div>
   
     <div *ngFor="let candidate of race.candidates" class="candidate-row">
